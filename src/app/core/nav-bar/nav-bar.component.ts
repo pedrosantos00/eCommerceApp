@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { BasketService } from '../../basket/basket.service';
+import { BasketItem } from '../../shared/models/basket';
 
 @Component({
   selector: 'app-nav-bar',
@@ -10,4 +12,14 @@ export class NavBarComponent{
 
 
   logo = "assets/images/logo.png";
+
+  constructor(public basketService : BasketService) {
+
+  }
+
+  getCount(items :BasketItem[])
+  {
+    return items.reduce((sum,item) =>
+    sum + item.quantity, 0)
+  }
 }

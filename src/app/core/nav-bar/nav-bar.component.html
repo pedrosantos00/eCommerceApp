@@ -10,10 +10,12 @@
     <a class="p-2" routerLink="/shop" routerLinkActive="active">Shop</a>
     <a class="p-2" routerLink="/test-error" routerLinkActive="active">Errors</a>
   </nav>
-  <div class="d-flex align-items-center">
-    <a class="position-relative">
+  <div  class="d-flex align-items-center">
+    <a  routerLink="/basket" class="position-relative">
       <i class="fa fa-shopping-cart fa-2x me-5 text-dark"></i>
-      <div class="cart-no pt-1">5</div>
+      <div *ngIf="(basketService.basketSource$ | async) as basket" class="cart-no pt-1">
+        {{getCount(basket.items)}}
+      </div>
     </a>
     <a href="" class="btn btn-outline-secondary me-2">Login</a>
     <a href="" class="btn btn-outline-secondary me-3">Sign Up</a>
