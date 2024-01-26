@@ -29,27 +29,11 @@
     </section>
     <section class="col-9">
       <div class="d-flex justify-content-between alignt-items-center pb-2">
-        <header>
-          <Span *ngIf="totalCount > 0">Showing
-            <strong>
-              {{(shopParams.pageNumber -1) * shopParams.pageSize +1}} -
-              {{shopParams.pageNumber * shopParams.pageSize
-              > totalCount
-              ? totalCount
-              : shopParams.pageNumber * shopParams.pageSize
-
-              }}
-            </strong>
-             of
-             <strong>
-              {{totalCount}}
-            </strong> Results</Span>
-            <span *ngIf="totalCount === 0"><strong>0</strong> No results</span>
-        </header>
+        <app-paging-header [shopParams]="shopParams" [totalCount]="totalCount"></app-paging-header>
         <div class="d-flex mt-2">
-          <input type="text" placeholder="Search" class="form-control me-2">
-          <button class="btn btn-outline-primary mx-2">Search</button>
-          <button class="btn btn-outline-success mx-2">Reset</button>
+          <input (keyup.enter)="onSearch()" type="text"  placeholder="Search" class="form-control me-2" #search>
+          <button class="btn btn-outline-primary mx-2" (click)="onSearch()">Search</button>
+          <button class="btn btn-outline-success mx-2" (click)="onReset()">Reset</button>
         </div>
       </div>
 
@@ -61,17 +45,11 @@
 
 
       <div class="d-flex justify-content-center" *ngIf="totalCount > 0">
-        <pagination
-        [boundaryLinks]="true"
-        [totalItems]="totalCount"
-        [itemsPerPage]="shopParams.pageSize"
-        [maxSize]="10"
-        (pageChanged)="onPageChange($event)"
-        previousText="&lsaquo;"
-        nextText="&rsaquo;"
-        firstText="&laquo;"
-        lastText="&raquo;">
-        </pagination>
+          <app-pager
+          [totalCount]="totalCount"
+          [pageSize]="shopParams.pageSize"
+          (pageChanged)="onPageChange($event)"
+          ></app-pager>
       </div>
     </section>
   </div>

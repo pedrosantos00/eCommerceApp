@@ -1,0 +1,17 @@
+<header *ngIf="totalCount && shopParams.pageNumber && shopParams.pageSize">
+  <Span *ngIf="totalCount > 0">Showing
+    <strong>
+      {{(shopParams.pageNumber -1) * shopParams.pageSize +1}} -
+      {{shopParams.pageNumber * shopParams.pageSize
+      > totalCount
+      ? totalCount
+      : shopParams.pageNumber * shopParams.pageSize
+
+      }}
+    </strong>
+     of
+     <strong>
+      {{totalCount}}
+    </strong> Results</Span>
+    <span *ngIf="totalCount === 0"><strong>0</strong> No results</span>
+</header>
