@@ -4,12 +4,7 @@
 *ngIf="error"
 >
 <h5 class="text-danger"  style="font-weight: bolder;">Error: {{error.errorMessage}}</h5>
-<p class="font-weight-bold">This error comes from the server- not ANGULAR</p>
-<P>What to do next?</P>
-<ol>
-  <li>Check the network tab in dev tools</li>
-  <li>Request in postman for debug</li>
-</ol>
+
 <h5>Stack trace</h5>
 <code class="mt-5" style="background-color: whitesmoke;">{{error.details}}</code>
 </ng-container>

@@ -12,6 +12,7 @@ import { HomeModule } from './home/home.module';
 import { environment } from '../environments/environment';
 import { ErrorInterceptor } from './core/interceptors/error.interceptor';
 import { ToastrModule } from 'ngx-toastr';
+import { loadingInterceptor } from './core/interceptors/loading.interceptor';
 
 
 @NgModule({
@@ -31,6 +32,11 @@ import { ToastrModule } from 'ngx-toastr';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ErrorInterceptor,
+      multi : true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: loadingInterceptor,
       multi : true
     }
   ],
