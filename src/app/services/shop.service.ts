@@ -23,14 +23,16 @@ export class ShopService {
     params = params.append('pageIndex',shopParams.pageNumber);
     params = params.append('pageSize',shopParams.pageSize);
     if(shopParams.search)params = params.append('search',shopParams.search);
-
-
-
     return this.http.get<Pagination<Product[]>>(
 
       this.apiUrl + 'products' ,{params});
   }
 
+  getProduct(id : number)
+  {
+    return this.http.get<Product>(
+      this.apiUrl + 'products/'+ id);
+  }
   getBrand() {
     return this.http.get<Brand[]>(this.apiUrl + 'products/brands');
   }
@@ -38,4 +40,6 @@ export class ShopService {
   getTypes() {
     return this.http.get<Type[]>(this.apiUrl + 'products/types');
   }
+
+
 }
