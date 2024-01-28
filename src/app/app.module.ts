@@ -26,7 +26,7 @@ import { loadingInterceptor } from './core/interceptors/loading.interceptor';
     BrowserAnimationsModule,
     HttpClientModule,
     CoreModule,
-    HomeModule
+    HomeModule,
   ],
   providers: [
     {
