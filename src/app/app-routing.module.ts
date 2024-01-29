@@ -1,3 +1,4 @@
+import { OrdersModule } from './orders/orders.module';
 import { CanActivate } from '@angular/router';
 import { CheckoutsModule } from './checkout/checkouts.module';
 import { NgModule } from '@angular/core';
@@ -21,7 +22,12 @@ const routes: Routes = [
     canActivate:  [AuthGuard],
     loadChildren: () => import('./checkout/checkouts.module').then(m => m.CheckoutsModule)
   },
-  {path: 'account', loadChildren: () => import('./account/account.module').then(m => m.AccountModule)},
+  {path: 'account', loadChildren: () => import('./account/account.module').then(m => m.AccountModule),
+   data: { breadcrumb: {skip: true}}},
+  {path: 'orders',canActivate: [AuthGuard], loadChildren: () => import('./orders/orders.module').then(m => m.OrdersModule),
+  data: { breadcrumb: 'orders' }
+},
+
   {path: '**', redirectTo: '', pathMatch: 'full' }
 ];
 
