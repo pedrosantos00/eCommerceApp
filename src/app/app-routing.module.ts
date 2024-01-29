@@ -1,3 +1,4 @@
+import { CanActivate } from '@angular/router';
 import { CheckoutsModule } from './checkout/checkouts.module';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -5,6 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { TestErrorComponent } from './core/test-error/test-error.component';
 import { NotFoundComponent } from './core/not-found/not-found.component';
 import { ServerErrorComponent } from './core/server-error/server-error.component';
+import { AuthGuard } from './core/guards/auth.guard';
 
 const routes: Routes = [
   {path: '', component: HomeComponent, data: {breadcrumb: 'Home'} },
@@ -14,7 +16,11 @@ const routes: Routes = [
   // THIS IS FOR LAZY LOADING
   {path: 'shop', loadChildren: () => import('./shop/shop.module').then(m => m.ShopModule)},
   {path: 'basket', loadChildren: () => import('./basket/basket.module').then(m => m.BasketModule)},
-  {path: 'checkout', loadChildren: () => import('./checkout/checkouts.module').then(m => m.CheckoutsModule)},
+  {
+    path: 'checkout',
+    canActivate:  [AuthGuard],
+    loadChildren: () => import('./checkout/checkouts.module').then(m => m.CheckoutsModule)
+  },
   {path: 'account', loadChildren: () => import('./account/account.module').then(m => m.AccountModule)},
   {path: '**', redirectTo: '', pathMatch: 'full' }
 ];
