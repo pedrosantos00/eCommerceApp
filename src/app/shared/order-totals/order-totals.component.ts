@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BasketService } from '../../basket/basket.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { BasketService } from '../../basket/basket.service';
   templateUrl: './order-totals.component.html',
   styleUrl: './order-totals.component.scss'
 })
-export class OrderTotalsComponent {
+export class OrderTotalsComponent{
 
 
   constructor(public basktService :BasketService) {}
